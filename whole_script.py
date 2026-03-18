@@ -7,8 +7,9 @@ def get_race_announcement():
     response = requests.get(url)
     data = response.json()
     
-    df = pd.DataFrame(data)
-    # Convert to datetime objects
+    df = pd.DataFrame(data) #loading dataframe
+
+    #conversion of date start to dtype:dataime
     df['date_start'] = pd.to_datetime(df['date_start'])
     df['date_only'] = df['date_start'].dt.date
     df['time_only'] = df['date_start'].dt.time
@@ -29,4 +30,6 @@ def get_race_announcement():
         return f"🏎️ RACE DAY TOMORROW at {location} at {time}"
     
     return None # Return None if no race tomorrow
+    
 
+get_race_announcement()
