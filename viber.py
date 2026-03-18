@@ -1,9 +1,12 @@
 import requests
 import json
 from whole_script import get_race_announcement
+from dotenv import load_dotenv
+import os
 
-api_key = '5616cd7c7272cb44-bbef03b9621f875b-40da9d396ef10303'
-user_id = '/oUzQ4P9sUoNibNIWlGvnQ=='
+load_dotenv()  
+api_key = os.getenv('VIBER_API_KEY')
+user_id = os.getenv('VIBER_USER_ID')
 url = 'https://chatapi.viber.com/pa/post'
 
 message = get_race_announcement()
