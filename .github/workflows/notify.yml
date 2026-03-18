@@ -1,0 +1,28 @@
+name: F1 Race Notifier
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests pandas python-dotenv
+
+      - name: Run notifier
+        env:
+          VIBER_API_KEY: ${{ secrets.VIBER_API_KEY }}
+          VIBER_USER_ID: ${{ secrets.VIBER_USER_ID }}
+        run: python viber.py
