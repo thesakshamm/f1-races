@@ -2,7 +2,8 @@ import requests
 import json
 import os
 from whole_script import get_race_announcement
-
+from dotenv import load_dotenv
+load_dotenv()  # Add this before os.getenv() calls
 
 api_key = os.getenv('VIBER_API_KEY')
 user_id = os.getenv('VIBER_USER_ID')

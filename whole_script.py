@@ -21,15 +21,20 @@ def get_race_announcement():
     today = pd.Timestamp.today() # Using your specific test date
     tmrw = today + timedelta(days=1)
     
+   
+
+    
     # Check if any race date matches tomorrow
-    match = race_dates[race_dates['date_only'] == tmrw]
+    match = race_dates[race_dates['date_only'] == tmrw.date()]
 
     if not match.empty:
         location = match['circuit_short_name'].iloc[0]
         time = match['time_only'].iloc[0]
         return f"🏎️ RACE DAY TOMORROW at {location} at {time}"
+    else:
+        return f"No race tomorrow 🏁" # Return None if no race tomorrow
     
-    return None # Return None if no race tomorrow
+    
     
 
 get_race_announcement()
